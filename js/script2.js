@@ -1,0 +1,115 @@
+'use strict';
+var players = {
+    0 : {name : 'Guerrier', life : 150, damage : 30, competence : 40, defense : 10, exp : 0},
+    1 : {name : 'Magicien', life : 120, damage : 20, competence : 40,  defense : 20, exp : 0},
+};
+
+
+var monsters = {
+    0 : {name : 'Gobelin', life : 40, damage : 15, exp : 30},
+    1 : {name : 'Squelette', life : 90, damage : 20, exp : 50},
+    2 : {name : 'Troll', life : 200, damage : 30, exp : 100}
+};
+
+
+//au click sur un des perso => on définit player.name et on créé l'index qui correspond
+var player = new Player(players[0]);
+
+
+//On créé un 1er monstre aléatoire
+var index = Math.floor(Math.random() * (Object.keys(monsters).length));
+var monster = new Monster(monsters[index]);
+console.log("******************************\nUn " + monster.name + " vous attaque !\n******************************")
+
+
+//Function qui se déclenche après choix du joueur{
+
+
+    var gameOver = false;
+
+    while(gameOver == false){
+
+        if(player.name == "magicien"){
+            var choice = prompt("Que souhaitez vous faire ? \n\nF : Frapper \nC : utiliser sa Compétence \nS : se Soigner \nQ : Quitter").toUpperCase();
+        }else{
+            var choice = prompt("Que souhaitez vous faire ? \n\nF : Frapper \nS : se Soigner \nQ : Quitter").toUpperCase();
+        }
+
+        console.log("\n<<<<< Tour du joueur >>>>>\n");
+
+        //On définit un nombre random entre 1 et 10 pour faire un risque d'échec critique de 10% (on décide plus bas de définir le chiffre qui génère l'echec critique)
+        var critic = Math.floor(Math.random() * (10 ));
+
+        switch (choice) {
+            case "F":
+                if(critic != 2){
+                    player.attack(monster);
+                }else{
+                    console.log("Le " + player.name + " a subi un echec critique");
+                    gameOver = true;
+                }
+                break;
+            case "C":
+                
+                break;
+            case "S":
+                
+                break;
+            case "Q":
+                gameOver = true;
+                break;
+        }
+
+
+        if(monster.life <= 0){
+            console.log(this.name + " est mort !!!");
+    
+            //On ajoute l'expérience au joueur
+            player.exp = player.exp + this.exp;
+            console.log("L'expérience de " + player.name + " passe à " + player.exp);
+            
+            if(player.exp >= 50 && player.exp < 100){
+                console.log(player.name + " passe au niveau 1");
+            }else if(player.exp >= 100 && player.exp < 150){
+                console.log(player.name + " passe au niveau 2");
+            }else if(player.exp >= 150 && player.exp < 200){
+                console.log(player.name + " passe au niveau 3");
+            }else if(player.exp >= 200 && player.exp < 250){
+                console.log(player.name + " passe au niveau 4");
+            }else if(player.exp >= 250){
+                console.log(player.name + " passe au niveau 5");
+            }
+            
+            //On créé un nouveau monstre qui attaque
+            // var index = Math.floor(Math.random() * (Object.keys(monsters).length));
+            var monster = new Monster(monsters[index]);
+            console.log("\n******************************\nUn " + this.name + " vous attaque !\n******************************\n")
+        }
+    
+
+
+
+
+
+
+        // if(monster.life <= 0){
+        //     monster.killedByPlayer();
+        // }else{
+        //     console.log("\n<<<<< Tour du monster >>>>>\n");
+            
+        //     if(critic != 2){
+        //         monster.attack(player);
+        //     }else{
+        //         console.log("Le " + monster.name + " a subi un echec critique");
+        //         console.log("Le " + player.name + " a gagné !")
+        //         monster.killedByPlayer();
+        //     }
+        // }
+                    
+
+}
+
+//Faire choix joueur
+//faire fonction pour se soigner ATTENTION, ne pas dépasser la vie initiale
+//faire fonction pour utiliser compétence
+//afficher liste des monstres tués
