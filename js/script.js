@@ -51,7 +51,6 @@ function playerChoice(clicked_id){
                     player.attack(monster);
                 }else{
                     player.criticalFail();
-                    // console.log("Le " + player.name + " a perdu");
                     player.life = 0;
                     gameOver = true;
                 }
@@ -61,7 +60,6 @@ function playerChoice(clicked_id){
                     player.useCompetence(monster);
                 }else{
                     player.criticalFail();
-                    // console.log("Le " + player.name + " a perdu");
                     player.life = 0;
                     gameOver = true;
                 }
@@ -72,7 +70,6 @@ function playerChoice(clicked_id){
                     console.log("Le " + player.name + " se soigne. Ses points de vie sont maintenant à " + player.life);
                 }else{
                     player.criticalFail();
-                    // console.log("Le " + player.name + " a perdu");
                     player.life = 0;
                     gameOver = true;
                 }
@@ -83,36 +80,17 @@ function playerChoice(clicked_id){
                 break;
         }
 
-        
-        //Mettre code ci dessous dans classe du mosnter, function killedByPlayer (idem si player killedByMonster)
         if(monster.life <= 0){
-            console.log(monster.name + " est mort !!!");
 
+            monster.killedByPlayer(player);
+            
             //Lorsque le monstre est tué, on enregistre son nom dans un tableau
             killedMonsters.push(monster.name);
-            
-            
-            //On ajoute l'expérience au joueur
-            player.exp = player.exp + monster.exp;
-            console.log("L'expérience de " + player.name + " passe à " + player.exp);
-            
-            if(player.exp >= 50 && player.exp < 100){
-                console.log(player.name + " passe au niveau 1");
-            }else if(player.exp >= 100 && player.exp < 150){
-                console.log(player.name + " passe au niveau 2");
-            }else if(player.exp >= 150 && player.exp < 200){
-                console.log(player.name + " passe au niveau 3");
-            }else if(player.exp >= 200 && player.exp < 250){
-                console.log(player.name + " passe au niveau 4");
-            }else if(player.exp >= 250){
-                console.log(player.name + " passe au niveau 5");
-            }
 
             // On affiche la liste des monstres tués
             if(killedMonsters.length > 0){
                 console.log("Voici la liste des monstres tués : " + killedMonsters);
             }
-
 
             //On créé un nouveau monstre aléatoire qui attaque
             var index = Math.floor(Math.random() * (Object.keys(monsters).length));
@@ -120,7 +98,6 @@ function playerChoice(clicked_id){
             console.log("\n******************************\nUn " + monster.name + " vous attaque !\n******************************");
         }
         
-
         
         if(player.life > 0 && monster.life > 0){
             console.log("\n<<<<< Tour du monster >>>>>");
@@ -130,8 +107,9 @@ function playerChoice(clicked_id){
             }else{
                 console.log("Le " + monster.name + " a subi un echec critique");
                 console.log("Le " + player.name + " a gagné !");
-        
+                
                 //On créé un nouveau monstre qui attaque
+                var index = Math.floor(Math.random() * (Object.keys(monsters).length));
                 var monster = new Monster(monsters[index]);
                 console.log("\n******************************\nUn " + monster.name + " vous attaque !\n******************************");
             }

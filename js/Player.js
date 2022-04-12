@@ -12,7 +12,6 @@ class Player{
     }
     
 
-
     attack(monster) {
         monster.life -= this.damage;
         console.log(monster.name + " a perdu " + this.damage + " points de vie");
@@ -44,8 +43,6 @@ class Player{
         }else{
             this.life = this.maxLife;
         }
-
-
     }
 
 
@@ -55,14 +52,12 @@ class Player{
             console.log("Les monstres ont gagné !!!");
     }
 
+
     criticalFail(){
         console.log(this.name + " a subi un échec critique");
         console.log(this.name + " est mort");
         console.log("Les monstres ont gagné !!!");
     }
-
-
-
 }
 
 
