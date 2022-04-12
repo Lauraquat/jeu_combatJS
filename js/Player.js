@@ -50,8 +50,15 @@ class Player{
 
 
     killedByMonster(){
+            console.log(this.name + " n'a plus de point de vie");
+            console.log(this.name + " est mort");
+            console.log("Les monstres ont gagné !!!");
+    }
 
-
+    criticalFail(){
+        console.log(this.name + " a subi un échec critique");
+        console.log(this.name + " est mort");
+        console.log("Les monstres ont gagné !!!");
     }
 
 

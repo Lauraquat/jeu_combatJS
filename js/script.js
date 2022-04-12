@@ -14,36 +14,31 @@ var monsters = {
 
 function playerChoice(clicked_id){
     if(clicked_id == "guerrier"){
-        //au click sur un des perso => on définit player.name et on créé l'index qui correspond
+        //au click sur un des perso on créé une instanciation selon l'index correspondant
         var player = new Player(players[0]);
     }else if(clicked_id == "magicien"){
         var player = new Player(players[1]);
         
     }
     
+    console.log("Vous avez choisi de jouer avec un " + player.name);
+    
+    //On créé un 1er monstre aléatoire
+    var index = Math.floor(Math.random() * (Object.keys(monsters).length));
+    var monster = new Monster(monsters[index]);
+    console.log("\n****************************************\nUn " + monster.name + " vous attaque !\n****************************************")
     
     
-    //Function qui se déclenche après choix du joueur => intégrer le reste du code
-
-
-
-}
-
-//On créé un 1er monstre aléatoire
-var index = Math.floor(Math.random() * (Object.keys(monsters).length));
-var monster = new Monster(monsters[index]);
-console.log("\n****************************************\nUn " + monster.name + " vous attaque !\n****************************************")
-
-
     var gameOver = false;
+    var killedMonsters = [];
 
     while(gameOver == false){
 
-        // if(player.name == "Magicien"){
-        //     var choice = prompt("Que souhaitez vous faire ? \n\nF : Frapper \nC : utiliser sa Compétence \nS : se Soigner \nQ : Quitter").toUpperCase();
-        // }else{
-        //     var choice = prompt("Que souhaitez vous faire ? \n\nF : Frapper \nS : se Soigner \nQ : Quitter").toUpperCase();
-        // }
+        if(player.name == "Magicien"){
+            var choice = prompt("Que souhaitez vous faire ? \n\nF : Frapper \nC : utiliser sa Compétence \nS : se Soigner \nQ : Quitter").toUpperCase();
+        }else{
+            var choice = prompt("Que souhaitez vous faire ? \n\nF : Frapper \nS : se Soigner \nQ : Quitter").toUpperCase();
+        }
 
         console.log("\n<<<<< Tour du joueur >>>>>");
 
@@ -55,31 +50,31 @@ console.log("\n****************************************\nUn " + monster.name + "
                 if(critic != 2){
                     player.attack(monster);
                 }else{
-                    console.log("Le " + player.name + " a subi un echec critique");
+                    player.criticalFail();
+                    // console.log("Le " + player.name + " a perdu");
+                    player.life = 0;
                     gameOver = true;
-
-                    //TODO GERER FIN DE JEU LORS D'UN ECHEC CRITIQUE => monster continue d'attaquer
                 }
                 break;
             case "C":
                 if(critic != 2){
                     player.useCompetence(monster);
                 }else{
-                    console.log("Le " + player.name + " a subi un echec critique");
+                    player.criticalFail();
+                    // console.log("Le " + player.name + " a perdu");
+                    player.life = 0;
                     gameOver = true;
-
-                    //TODO GERER FIN DE JEU LORS D'UN ECHEC CRITIQUE => monster continue d'attaquer
                 }
                 break;
             case "S":
                 if(critic != 2){
                     player.healPlayer();
-                    console.log("Le " + player.name + " se soigne. Ses points de vie sont maintenant à" + player.life);
+                    console.log("Le " + player.name + " se soigne. Ses points de vie sont maintenant à " + player.life);
                 }else{
-                    console.log("Le " + player.name + " a subi un echec critique");
+                    player.criticalFail();
+                    // console.log("Le " + player.name + " a perdu");
+                    player.life = 0;
                     gameOver = true;
-
-                    //TODO GERER FIN DE JEU LORS D'UN ECHEC CRITIQUE => monster continue d'attaquer
                 }
                 break;
             case "Q":
@@ -88,12 +83,15 @@ console.log("\n****************************************\nUn " + monster.name + "
                 break;
         }
 
+        
         //Mettre code ci dessous dans classe du mosnter, function killedByPlayer (idem si player killedByMonster)
         if(monster.life <= 0){
             console.log(monster.name + " est mort !!!");
-            
-            var index = Math.floor(Math.random() * (Object.keys(monsters).length));
 
+            //Lorsque le monstre est tué, on enregistre son nom dans un tableau
+            killedMonsters.push(monster.name);
+            
+            
             //On ajoute l'expérience au joueur
             player.exp = player.exp + monster.exp;
             console.log("L'expérience de " + player.name + " passe à " + player.exp);
@@ -109,12 +107,20 @@ console.log("\n****************************************\nUn " + monster.name + "
             }else if(player.exp >= 250){
                 console.log(player.name + " passe au niveau 5");
             }
-            
-            //On créé un nouveau monstre qui attaque
+
+            // On affiche la liste des monstres tués
+            if(killedMonsters.length > 0){
+                console.log("Voici la liste des monstres tués : " + killedMonsters);
+            }
+
+
+            //On créé un nouveau monstre aléatoire qui attaque
+            var index = Math.floor(Math.random() * (Object.keys(monsters).length));
             var monster = new Monster(monsters[index]);
             console.log("\n******************************\nUn " + monster.name + " vous attaque !\n******************************");
         }
         
+
         
         if(player.life > 0 && monster.life > 0){
             console.log("\n<<<<< Tour du monster >>>>>");
@@ -124,16 +130,19 @@ console.log("\n****************************************\nUn " + monster.name + "
             }else{
                 console.log("Le " + monster.name + " a subi un echec critique");
                 console.log("Le " + player.name + " a gagné !");
-
+        
                 //On créé un nouveau monstre qui attaque
                 var monster = new Monster(monsters[index]);
                 console.log("\n******************************\nUn " + monster.name + " vous attaque !\n******************************");
             }
+
+            if(player.life <=0){
+                gameOver = true;
+                player.killedByMonster();
+            }
         }
 
-                
+    }    
+               
 
-    }
-
-//Faire choix joueur
-//afficher liste des monstres tués
+}

@@ -11,7 +11,12 @@ class Monster{
     attack(player){
         player.life -= this.damage - player.defense;
         console.log(player.name + " a perdu " + this.damage + " points de vie mais a " + player.defense + " points de défense");
-        console.log("Il reste " + player.life + " points de vie à " + player.name);        
+        
+        if(player.life > 0){
+            console.log("Il reste " + player.life + " points de vie à " + player.name);
+        }else{
+            console.log(player.name + " n'a plus de point de vie");
+        }
     };
 
     // killedByPlayer(){ 
