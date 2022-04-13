@@ -13,13 +13,8 @@ var monsters = {
 
 
 function playerChoice(clicked_id){
-    if(clicked_id == "guerrier"){
-        //au click sur un des perso on créé une instanciation selon l'index correspondant
-        var player = new Player(players[0]);
-    }else if(clicked_id == "magicien"){
-        var player = new Player(players[1]);
-        
-    }
+    //au click sur un des perso on créé une instanciation selon l'index correspondant
+    var player = new Player(players[clicked_id]);
     
     console.log("Vous avez choisi de jouer avec un " + player.name);
     
