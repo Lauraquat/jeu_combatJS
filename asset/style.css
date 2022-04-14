@@ -20,6 +20,7 @@ h1,h2 {
 #infoJeu{
     height: 120px;
     overflow: auto;
+
 }
 button{
     background-color: rgba(0, 0, 0, 0.407);
@@ -103,4 +104,16 @@ button img {
     top: 50%;
     left:50%;
     transform: translate(-50%, -50%);
+}
+#btnChoices button{
+    background-color: rgba(0, 0, 0, 0.511);
+    color: white;
+    width: auto;
+    padding: 0.5rem;
+    margin: 0 0.2rem;
+}
+#btnChoices{
+    display: flex;
+    justify-content: center;
+    margin-top:0.2rem ;
 }

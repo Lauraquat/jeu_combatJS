@@ -10,6 +10,7 @@ class Player{
         this.exp = player.exp;
         this.maxLife = player.life;
         blockText = document.getElementById('infoJeu');
+        this.gameOver = false;
     }
     
     attack(monster) {
@@ -22,7 +23,10 @@ class Player{
             blockText.innerHTML += "<h4>Il reste " + monster.life + " points de vie à " + monster.name + "<h4/>";
         }else{
             blockText.innerHTML += "<h4>" + monster.name + " n'a plus de point de vie<h4/>";
+            deadMonster();
         }
+        scrollBot();
+
     };
 
 
@@ -36,7 +40,10 @@ class Player{
             blockText.innerHTML += "<h4>Il reste " + monster.life + " points de vie à " + monster.name + "<h4/>";
         }else{
             blockText.innerHTML += "<h4>" + monster.name + " n'a plus de point de vie<h4/>";
+            deadMonster();
         }
+        scrollBot();
+
     }
 
     
@@ -48,6 +55,8 @@ class Player{
         }else{
             this.life = this.maxLife;
         }
+        scrollBot();
+
     }
 
 
@@ -55,18 +64,32 @@ class Player{
             blockText.innerHTML += "<h4>" + this.name + " n'a plus de point de vie<h4/>";
             blockText.innerHTML += "<h4>" + this.name + " est mort<h4/>";
             blockText.innerHTML += "<h4>Les monstres ont gagné !!!</h4>";
-            document.getElementById('divBtn').style.display = 'block';
+            document.getElementById('divBtn').style.display = 'flex';
             document.getElementById('ring').style.display = 'none';
             document.getElementById('btnChoices').style.display = 'none';
-    }
+            scrollBot();
 
+    }
 
     criticalFail(){
         blockText.innerHTML += "<h4>" + this.name + " a subi un échec critique<h4/>";
         blockText.innerHTML += "<h4>" + this.name + " est mort<h4/>";
         blockText.innerHTML += "<h4>Les monstres ont gagné !!!</h4>";
-        document.getElementById('divBtn').style.display = 'block';
+        document.getElementById('divBtn').style.display = 'flex';
         document.getElementById('ring').style.display = 'none';
         document.getElementById('btnChoices').style.display = 'none';
+        scrollBot();
+
     }
+
+    quit(){
+        blockText.innerHTML += "<h4> Le " + this.name + " a mis fin a la partie<h4/>";
+        this.gameOver = true;
+        document.getElementById('divBtn').style.display = 'flex';
+        document.getElementById('ring').style.display = 'none';
+        document.getElementById('btnChoices').style.display = 'none';
+        scrollBot();
+
+    }
+
 }

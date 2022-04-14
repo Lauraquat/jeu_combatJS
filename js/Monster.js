@@ -21,6 +21,8 @@ class Monster{
         }else{
             blockText.innerHTML = "<h4>" + player.name + " n'a plus de point de vie</h4>";
         }
+        scrollBot();
+
     };
 
     killedByPlayer(player){ 
@@ -41,12 +43,13 @@ class Monster{
         }else if(player.exp >= 250){
             blockText.innerHTML += "<h4>" + player.name + " passe au niveau 5</h4>";
         }
+        scrollBot();
+
     }
 
     monsterTurn(player){
-        if (player.life > 0 && this.life > 0) {
-            console.log("\n<<<<< Tour du monster >>>>>");
-            blockText.children.innerHTML += "<h4>Tour du " + this.name + "</h4>";
+        if (player.life > 0 && this.life > 0 && player.gameOver != true) {
+            blockText.innerHTML += "<h4>Tour du " + this.name + "</h4>";
             blockMonster.classList.add('monstermove');
 
             if (!criticity()) {
@@ -66,9 +69,10 @@ class Monster{
             if (player.life <= 0) {
                 player.killedByMonster();
             }else {
-                blockText.children.innerHTML += "<h4>Votre tour</h4>";
+                blockText.innerHTML += "<h4>Votre tour</h4>";
                 blockMonster.classList.remove('monstermove')
             }
         }
+        scrollBot();
     }
 }

@@ -47,6 +47,7 @@ function playerChoice(clicked_id) {
         blockPlayer.innerHTML = '<img src="./asset/images/guerier.png" alt="guerier"/>';
         btnChoice.innerHTML = '<button id="F" onclick="commandChoice(this.id)">Frapper</button><button id="S" onclick="commandChoice(this.id)">Se soigner</button><button id="Q" onclick="commandChoice(this.id)">Quitter</button>';
     }
+    scrollBot();
 }
 
 
@@ -63,7 +64,6 @@ function commandChoice(id) {
             } else {
                 player.criticalFail();
                 player.life = 0;
-                gameOver = true;
             }
             break;
         case "C":
@@ -72,7 +72,6 @@ function commandChoice(id) {
             } else {
                 player.criticalFail();
                 player.life = 0;
-                gameOver = true;
             }
             break;
         case "S":
@@ -81,11 +80,11 @@ function commandChoice(id) {
             } else {
                 player.criticalFail();
                 player.life = 0;
-                gameOver = true;
             }
             break;
         case "Q":
-            blockText.firstChild.data = "Le " + player.name + " a mis fin à la partie";
+            player.quit();
+
             break;
     }
 
@@ -93,7 +92,6 @@ function commandChoice(id) {
        monster.monsterTurn(player)
     },3000);
 
-    deadMonster();
 }
 
 
@@ -103,6 +101,7 @@ function criticity(){
 }
 
 function deadMonster(){
+
     if (monster.life <= 0) {
 
         monster.killedByPlayer(player);
@@ -112,14 +111,21 @@ function deadMonster(){
 
         // On affiche la liste des monstres tués
         if (killedMonsters.length > 0) {
-            blockText.children.innerHTML += "Voici la liste des monstres tués : ";
-            blockText.children.innerHTML += '<p>' + killedMonsters + '<p>';
+            blockText.innerHTML += "<h4>Voici la liste des monstres tués : </h4>";
+            blockText.innerHTML += '<p>' + killedMonsters + '<p>';
         }
 
         //On créé un nouveau monstre aléatoire qui attaque
         index = Math.floor(Math.random() * (Object.keys(monsters).length));
         monster = new Monster(monsters[index]);
-        blockText.innerHTML+= "<h4>Un " + monster.name + " vous attaque !</h4>";
+        blockText.innerHTML += "<h4>Un " + monster.name + " vous attaque !</h4>";
         blockMonster.innerHTML = '<img src="./asset/images/' + monster.name + '.png" alt="monter"/>';
     }
+    scrollBot();
+}
+
+function scrollBot(){
+    var objScroll= document.getElementById('infoJeu');
+objScroll.scrollTop = objScroll.scrollHeight;
+
 }
