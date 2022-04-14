@@ -26,7 +26,7 @@ class Monster{
     };
 
     killedByPlayer(player){ 
-        blockText.innerHTML += "<h4>*****" + this.name + " est mort !!!*****</h4>";
+        blockText.innerHTML += "<h4>" + this.name + " est mort !!!</h4>";
         
         //On ajoute l'expérience au joueur
         player.exp = player.exp + this.exp;
@@ -49,7 +49,7 @@ class Monster{
 
     monsterTurn(player){
         if (player.life > 0 && this.life > 0 && player.gameOver != true) {
-            blockText.innerHTML += "<h4><<<<<Tour du " + this.name + ">>>>></h4>";
+            blockText.innerHTML += "<h4>Tour du " + this.name + "</h4>";
             blockMonster.classList.add('monstermove');
 
             if (!criticity()) {
@@ -69,7 +69,7 @@ class Monster{
             if (player.life <= 0) {
                 player.killedByMonster();
             }else {
-                blockText.innerHTML += "<h4><<<<<Votre tour>>>>></h4>";
+                blockText.innerHTML += "<h4>Votre tour</h4>";
                 blockMonster.classList.remove('monstermove')
             }
         }
