@@ -19,7 +19,6 @@ var blockMonster = document.getElementById('imgMonter');
 function playerChoice(clicked_id){
     //au click sur un des perso on créé une instanciation selon l'index correspondant
     var player = new Player(players[clicked_id]);
-    console.log("click");
 
     //console.log("Vous avez choisi de jouer avec un " + player.name);
     blockText.firstChild.data = "Vous avez choisi de jouer avec un " + player.name;

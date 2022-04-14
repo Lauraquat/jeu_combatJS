@@ -9,29 +9,36 @@ class Player{
         this.life = player.life;
         this.exp = player.exp;
         this.maxLife = player.life;
+        blockText = document.getElementById('infoJeu');
     }
     
 
     attack(monster) {
         monster.life -= this.damage;
-        console.log(monster.name + " a perdu " + this.damage + " points de vie");
+        blockText.innerHTML = "<h3>" + monster.name + " a perdu " + this.damage + " points de vie<h3/>";
+        // console.log(monster.name + " a perdu " + this.damage + " points de vie");
 
         if(monster.life > 0){
-            console.log("Il reste " + monster.life + " points de vie à " + monster.name);
+            blockText.innerHTML = "<h3>Il reste " + monster.life + " points de vie à " + monster.name + "<h3/>";
+            // console.log("Il reste " + monster.life + " points de vie à " + monster.name);
         }else{
-            console.log(monster.name + " n'a plus de point de vie");
+            blockText.innerHTML = "<h3>" + monster.name + " n'a plus de point de vie<h3/>";
+            // console.log(monster.name + " n'a plus de point de vie");
         }
     };
 
 
     useCompetence(monster){
         monster.life -= this.competence;
-        console.log(monster.name + " a perdu " + this.competence + " points de vie");
+        blockText.innerHTML = "<h3>" + monster.name + " a perdu " + this.competence + " points de vie<h3/>";
+        // console.log(monster.name + " a perdu " + this.competence + " points de vie");
 
         if(monster.life > 0){
-            console.log("Il reste " + monster.life + " points de vie à " + monster.name);
+            blockText.innerHTML = "<h3>Il reste " + monster.life + " points de vie à " + monster.name + "<h3/>";
+            // console.log("Il reste " + monster.life + " points de vie à " + monster.name);
         }else{
-            console.log(monster.name + " n'a plus de point de vie");
+            blockText.innerHTML = "<h3>" + monster.name + " n'a plus de point de vie<h3/>";
+            // console.log(monster.name + " n'a plus de point de vie");
         }
     }
 
@@ -47,18 +54,21 @@ class Player{
 
 
     killedByMonster(){
-            console.log(this.name + " n'a plus de point de vie");
-            console.log(this.name + " est mort");
-            console.log("Les monstres ont gagné !!!");
+            blockText.innerHTML = "<h3>" + this.name + " n'a plus de point de vie<h3/>";
+            blockText.innerHTML = "<h3>" + this.name + " est mort<h3/>";
+            blockText.innerHTML = "<h3>Les monstres ont gagné !!!</h3>";
+            // console.log(this.name + " n'a plus de point de vie");
+            // console.log(this.name + " est mort");
+            // console.log("Les monstres ont gagné !!!");
     }
 
 
     criticalFail(){
-        console.log(this.name + " a subi un échec critique");
-        console.log(this.name + " est mort");
-        console.log("Les monstres ont gagné !!!");
+        blockText.innerHTML = "<h3>" + this.name + " a subi un échec critique<h3/>";
+        blockText.innerHTML = "<h3>" + this.name + " est mort<h3/>";
+        blockText.innerHTML = "<h3>Les monstres ont gagné !!!</h3>";
+        // console.log(this.name + " a subi un échec critique");
+        // console.log(this.name + " est mort");
+        // console.log("Les monstres ont gagné !!!");
     }
 }
-
-
-
