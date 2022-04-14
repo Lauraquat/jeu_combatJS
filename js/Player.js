@@ -9,6 +9,7 @@ class Player{
         this.life = player.life;
         this.exp = player.exp;
         this.maxLife = player.life;
+        this.bourse = 0;
         blockText = document.getElementById('infoJeu');
         this.gameOver = false;
     }

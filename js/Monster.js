@@ -31,6 +31,10 @@ class Monster{
         //On ajoute l'expérience au joueur
         player.exp = player.exp + this.exp;
         blockText.innerHTML += "<h4>L'expérience de " + player.name + " passe à " + player.exp + "<h4/>";
+
+        //On ajoute de l'argent à la bourse du joueur
+        player.bourse += 20;
+        blockText.innerHTML += "<h4>La bourse de " + player.name + " s'élève maintenant à " + player.bourse + "€<h4/>";
         
         if(player.exp >= 50 && player.exp < 100){
             blockText.innerHTML += "<h4>" + player.name + " passe au niveau 1</h4>";
