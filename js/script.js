@@ -18,11 +18,17 @@ var btnChoice = document.getElementById('btnChoices');
 
 var pause = true;
 
+<<<<<<< HEAD
 var player;
 var monster;
 var index;
 
 var attackChoice;
+=======
+function playerChoice(clicked_id){
+    //au click sur un des perso on créé une instanciation selon l'index correspondant
+    var player = new Player(players[clicked_id]);
+>>>>>>> origin/laura
 
 function playerChoice(clicked_id) {
     //au click sur un des perso on créé une instanciation selon l'index correspondant
