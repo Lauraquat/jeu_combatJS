@@ -38,5 +38,42 @@ class Monster{
             console.log(player.name + " passe au niveau 5");
         }
     }
+
+    
+monsterTurn(player){
+    if (player.life > 0 && this.life > 0) {
+        // if (pause == false) {
+            console.log("\n<<<<< Tour du monster >>>>>");
+            blockText.firstChild.data = "Tour du " + this.name;
+            blockMonster.classList.add('monstermove');
+
+            if (!criticity()) {
+                this.attack(player);
+            } else {
+                console.log("Le " + this.name + " a subi un echec critique");
+                blockText.firstChild.data = "Le " + this.name + " a subi un echec critique";
+
+                console.log("Le " + player.name + " a gagné !");
+                blockText.innerHTML = "<h3>Le " + player.name + " a gagné !</h3>";
+
+                //On créé un nouveau monstre qui attaque
+                index = Math.floor(Math.random() * (Object.keys(monsters).length));
+                monster = new Monster(monsters[index]);
+                console.log("\n******************************\nUn " + this.name + " vous attaque !\n******************************");
+                blockText.firstChild.data = "Un " + this.name + " vous attaque !";
+            }
+
+            if (player.life <= 0) {
+                gameOver = true;
+                player.killedByMonster();
+            }else {
+                console.log("\n<<<<< Tour du joueur >>>>>");
+                blockText.firstChild.data = "Votre tour";
+                blockMonster.classList.remove('monstermove')
+            }
+        //}
+    }
+
+}
 }
 

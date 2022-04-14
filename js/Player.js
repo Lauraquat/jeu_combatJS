@@ -50,6 +50,8 @@ class Player{
             console.log(this.name + " n'a plus de point de vie");
             console.log(this.name + " est mort");
             console.log("Les monstres ont gagné !!!");
+            //blockText.firstChild.data = "Les monstres ont gagné !!! ";
+
     }
 
 
