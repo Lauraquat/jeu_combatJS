@@ -62,7 +62,7 @@ class Player{
 
     killedByMonster(){
             blockText.innerHTML += "<h4>" + this.name + " n'a plus de point de vie<h4/>";
-            blockText.innerHTML += "<h4>" + this.name + " est mort<h4/>";
+            blockText.innerHTML += "<h4>*****" + this.name + " est mort*****<h4/>";
             blockText.innerHTML += "<h4>Les monstres ont gagné !!!</h4>";
             document.getElementById('divBtn').style.display = 'flex';
             document.getElementById('ring').style.display = 'none';
@@ -73,7 +73,7 @@ class Player{
 
     criticalFail(){
         blockText.innerHTML += "<h4>" + this.name + " a subi un échec critique<h4/>";
-        blockText.innerHTML += "<h4>" + this.name + " est mort<h4/>";
+        blockText.innerHTML += "<h4>*****" + this.name + " est mort*****<h4/>";
         blockText.innerHTML += "<h4>Les monstres ont gagné !!!</h4>";
         document.getElementById('divBtn').style.display = 'flex';
         document.getElementById('ring').style.display = 'none';

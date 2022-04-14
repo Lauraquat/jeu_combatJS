@@ -111,8 +111,8 @@ function deadMonster(){
 
         // On affiche la liste des monstres tués
         if (killedMonsters.length > 0) {
-            blockText.innerHTML += "<h4>Voici la liste des monstres tués : </h4>";
-            blockText.innerHTML += '<p>' + killedMonsters + '<p>';
+            blockText.innerHTML += "<h4>#####Voici la liste des monstres tués : </h4>";
+            blockText.innerHTML += '<p>' + killedMonsters + '#####<p>';
         }
 
         //On créé un nouveau monstre aléatoire qui attaque
