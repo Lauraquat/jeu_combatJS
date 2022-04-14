@@ -12,20 +12,16 @@ class Player{
         blockText = document.getElementById('infoJeu');
     }
     
-
     attack(monster) {
         monster.life -= this.damage;
         audio = new Audio('./asset/criMonstre.mp3'); 
         audio.play();
         blockText.innerHTML += "<h4>"+monster.name + " a perdu " + this.damage + " points de vie</h4>";
-        console.log(monster.name + " a perdu " + this.damage + " points de vie");
 
         if(monster.life > 0){
             blockText.innerHTML += "<h4>Il reste " + monster.life + " points de vie à " + monster.name + "<h4/>";
-            console.log("Il reste " + monster.life + " points de vie à " + monster.name);
         }else{
             blockText.innerHTML += "<h4>" + monster.name + " n'a plus de point de vie<h4/>";
-            console.log(monster.name + " n'a plus de point de vie");
         }
     };
 
@@ -35,20 +31,18 @@ class Player{
         audio = new Audio('./asset/criMonstre.mp3'); 
         audio.play();
         blockText.innerHTML += "<h4>" + monster.name + " a perdu " + this.competence + " points de vie </h4>";
-        console.log(monster.name + " a perdu " + this.competence + " points de vie");
 
         if(monster.life > 0){
             blockText.innerHTML += "<h4>Il reste " + monster.life + " points de vie à " + monster.name + "<h4/>";
-            console.log("Il reste " + monster.life + " points de vie à " + monster.name);
         }else{
             blockText.innerHTML += "<h4>" + monster.name + " n'a plus de point de vie<h4/>";
-            console.log(monster.name + " n'a plus de point de vie");
         }
     }
 
     
     healPlayer(){
         this.life += 10;
+        blockText.innerHTML += "<h4>Le " + player.name + " se soigne. Ses points de vie sont maintenant à " + player.life + "</h4>";
         if(this.life <= this.maxLife){
             this.life = this.life;
         }else{
@@ -61,13 +55,9 @@ class Player{
             blockText.innerHTML += "<h4>" + this.name + " n'a plus de point de vie<h4/>";
             blockText.innerHTML += "<h4>" + this.name + " est mort<h4/>";
             blockText.innerHTML += "<h4>Les monstres ont gagné !!!</h4>";
-            console.log(this.name + " n'a plus de point de vie");
-            console.log(this.name + " est mort");
-            console.log("Les monstres ont gagné !!!");
             document.getElementById('divBtn').style.display = 'block';
             document.getElementById('ring').style.display = 'none';
             document.getElementById('btnChoices').style.display = 'none';
-
     }
 
 
@@ -75,13 +65,8 @@ class Player{
         blockText.innerHTML += "<h4>" + this.name + " a subi un échec critique<h4/>";
         blockText.innerHTML += "<h4>" + this.name + " est mort<h4/>";
         blockText.innerHTML += "<h4>Les monstres ont gagné !!!</h4>";
-        console.log(this.name + " a subi un échec critique");
-        console.log(this.name + " est mort");
-        console.log("Les monstres ont gagné !!!");
         document.getElementById('divBtn').style.display = 'block';
         document.getElementById('ring').style.display = 'none';
         document.getElementById('btnChoices').style.display = 'none';
-        
     }
-
 }
