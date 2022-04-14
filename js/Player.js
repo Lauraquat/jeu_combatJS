@@ -17,7 +17,7 @@ class Player{
         console.log(monster.name + " a perdu " + this.damage + " points de vie");
 
         if(monster.life > 0){
-        console.log("Il reste " + monster.life + " points de vie à " + monster.name);
+            console.log("Il reste " + monster.life + " points de vie à " + monster.name);
         }else{
             console.log(monster.name + " n'a plus de point de vie");
         }
@@ -29,7 +29,7 @@ class Player{
         console.log(monster.name + " a perdu " + this.competence + " points de vie");
 
         if(monster.life > 0){
-        console.log("Il reste " + monster.life + " points de vie à " + monster.name);
+            console.log("Il reste " + monster.life + " points de vie à " + monster.name);
         }else{
             console.log(monster.name + " n'a plus de point de vie");
         }

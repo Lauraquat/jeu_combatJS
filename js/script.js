@@ -19,17 +19,12 @@ var blockMonster = document.getElementById('imgMonter');
 function playerChoice(clicked_id){
     //au click sur un des perso on créé une instanciation selon l'index correspondant
     var player = new Player(players[clicked_id]);
+    console.log("click");
 
     //console.log("Vous avez choisi de jouer avec un " + player.name);
     blockText.firstChild.data = "Vous avez choisi de jouer avec un " + player.name;
     document.getElementById('divBtn').style.display ='none';
 
-    if(player.name == 'Magicien'){
-        blockPlayer.innerHTML = '<img src="./asset/images/magicien.png" alt="magicien"/>';
-    }else{
-        blockPlayer.innerHTML = '<img src="./asset/images/guerier.png" alt="guerier"/>';
-    }
-    document.getElementById('playerPV').innerHTML='<p>'+ player.life+' PV</p>'
 
     //On créé un 1er monstre aléatoire
     var index = Math.floor(Math.random() * (Object.keys(monsters).length));
@@ -45,10 +40,14 @@ function playerChoice(clicked_id){
     while(gameOver == false){
 
         if(player.name == "Magicien"){
+            blockPlayer.innerHTML = '<img src="./asset/images/magicien.png" alt="magicien"/>';
             var choice = prompt("Que souhaitez vous faire ? \n\nF : Frapper \nC : utiliser sa Compétence \nS : se Soigner \nQ : Quitter").toUpperCase();
         }else{
+            blockPlayer.innerHTML = '<img src="./asset/images/guerier.png" alt="guerier"/>';
             var choice = prompt("Que souhaitez vous faire ? \n\nF : Frapper \nS : se Soigner \nQ : Quitter").toUpperCase();
         }
+
+        document.getElementById('playerPV').innerHTML='<p>'+ player.life+' PV</p>'
 
         //console.log("\n<<<<< Tour du joueur >>>>>");
         blockText.firstChild.data = "Votre tour";
