@@ -35,6 +35,8 @@ function playerChoice(clicked_id) {
     monster = new Monster(monsters[index]);
 
     blockText.innerHTML += "<h4>Un " + monster.name + " vous attaque !<h4/>";
+    blockText.innerHTML += "<h4>Votre tour<h4/>";
+
     blockMonster.innerHTML = '<img src="./asset/images/' + monster.name + '.png" alt="monter"/>';
     document.getElementById('ring').style.display = 'grid';
 
