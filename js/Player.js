@@ -15,6 +15,8 @@ class Player{
 
     attack(monster) {
         monster.life -= this.damage;
+        audio = new Audio('./asset/criMonstre.mp3'); 
+        audio.play();
         blockText.innerHTML = "<h3>" + monster.name + " a perdu " + this.damage + " points de vie<h3/>";
         console.log(monster.name + " a perdu " + this.damage + " points de vie");
 
@@ -30,6 +32,8 @@ class Player{
 
     useCompetence(monster){
         monster.life -= this.competence;
+        audio = new Audio('./asset/criMonstre.mp3'); 
+        audio.play();
         blockText.innerHTML = "<h3>" + monster.name + " a perdu " + this.competence + " points de vie<h3/>";
         console.log(monster.name + " a perdu " + this.competence + " points de vie");
 

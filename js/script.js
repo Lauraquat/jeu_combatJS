@@ -21,7 +21,7 @@ var pause = true;
 var player;
 var monster;
 var index;
-
+var audio; 
 var attackChoice;
 
 function playerChoice(clicked_id) {
@@ -44,7 +44,7 @@ function playerChoice(clicked_id) {
         btnChoice.style='block';
         blockPlayer.innerHTML = '<img src="./asset/images/magicien.png" alt="magicien"/>';
         // var choice = prompt("Que souhaitez vous faire ? \n\nF : Frapper \nC : utiliser sa Compétence \nS : se Soigner \nQ : Quitter").toUpperCase();
-        btnChoice.innerHTML = '<button id="F" onclick="commandChoice(this.id)">Frapper</button><button id="C" onclick="commandChoice(this.id)">Utilise competance</button><button id="S" onclick="commandChoice(this.id)">Se soigner</button><button id="Q" onclick="commandChoice(this.id)">Quitter</button>';
+        btnChoice.innerHTML = '<button id="F" onclick="commandChoice(this.id)">Frapper</button><button id="C" onclick="commandChoice(this.id)">Utilise compétence</button><button id="S" onclick="commandChoice(this.id)">Se soigner</button><button id="Q" onclick="commandChoice(this.id)">Quitter</button>';
     } else {
         btnChoice.style='block';
         blockPlayer.innerHTML = '<img src="./asset/images/guerier.png" alt="guerier"/>';
@@ -124,7 +124,10 @@ function commandChoice(id) {
 
             break;
     }
-    monster.monsterTurn(player);
+    setTimeout(function(){
+       monster.monsterTurn(player)},3000);
+
+    // monster.monsterTurn(player);
     deadmonster();
 }
 

@@ -12,6 +12,9 @@ class Monster{
 
     attack(player){
         player.life -= this.damage - player.defense;
+        audio = new Audio('./asset/criPlayer.mp3'); 
+        audio.play();
+
         blockText.innerHTML = "<h3>" + player.name + " a perdu " + this.damage + " points de vie mais a " + player.defense + " points de défense<h3/>";
         console.log(player.name + " a perdu " + this.damage + " points de vie mais a " + player.defense + " points de défense");
         
@@ -25,7 +28,7 @@ class Monster{
     };
 
     killedByPlayer(player){ 
-        blockText.innerHTML = "<h3>" + player.name + this.name + " est mort !!!</h3>";
+        blockText.innerHTML = "<h3>" + this.name + " est mort !!!</h3>";
         console.log(this.name + " est mort !!!");
         
         //On ajoute l'expérience au joueur
@@ -51,7 +54,6 @@ class Monster{
         }
     }
 
-    
 monsterTurn(player){
     if (player.life > 0 && this.life > 0) {
         // if (pause == false) {
@@ -85,6 +87,7 @@ monsterTurn(player){
                 blockText.firstChild.data = "Votre tour";
                 blockMonster.classList.remove('monstermove')
             }
+            
         //}
     }
 
