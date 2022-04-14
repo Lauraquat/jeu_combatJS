@@ -26,7 +26,7 @@ class Monster{
     };
 
     killedByPlayer(player){ 
-        blockText.innerHTML += "<h4>" + this.name + " est mort !!!</h4>";
+        blockText.innerHTML += "<h4>*****" + this.name + " est mort !!!*****</h4>";
         
         //On ajoute l'expérience au joueur
         player.exp = player.exp + this.exp;
