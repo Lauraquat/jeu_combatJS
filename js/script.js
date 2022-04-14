@@ -29,14 +29,14 @@ function playerChoice(clicked_id) {
     player = new Player(players[clicked_id]);
 
     console.log("Vous avez choisi de jouer avec un " + player.name);
-    //blockText.firstChild.data = "Vous avez choisi de jouer avec un " + player.name;
+    blockText.firstChild.data = "Vous avez choisi de jouer avec un " + player.name;
     document.getElementById('divBtn').style.display = 'none';
     //On créé un 1er monstre aléatoire
     index = Math.floor(Math.random() * (Object.keys(monsters).length));
     monster = new Monster(monsters[index]);
 
     console.log("\n****************************************\nUn " + monster.name + " vous attaque !\n****************************************")
-    blockText.innerHTML = "<h3>Un " + monster.name + " vous attaque !<h3/>";
+    blockText.innerHTML += "<h4>Un " + monster.name + " vous attaque !<h4/>";
     blockMonster.innerHTML = '<img src="./asset/images/' + monster.name + '.png" alt="monter"/>';
     document.getElementById('ring').style.display = 'grid';
 
@@ -110,7 +110,7 @@ function commandChoice(id) {
         case "S":
             if (!criticity()) {
                 player.healPlayer();
-                console.log("Le " + player.name + " se soigne. Ses points de vie sont maintenant à " + player.life);
+                blockText.firstChild.data = "Le " + player.name + " se soigne. Ses points de vie sont maintenant à " + player.life;
             } else {
                 player.criticalFail();
                 player.life = 0;
@@ -119,7 +119,7 @@ function commandChoice(id) {
             break;
         case "Q":
             gameOver = true;
-            //console.log("Le " + player.name + " a mis fin à la partie");
+            console.log("Le " + player.name + " a mis fin à la partie");
             blockText.firstChild.data = "Le " + player.name + " a mis fin à la partie";
 
             break;
@@ -127,8 +127,7 @@ function commandChoice(id) {
     setTimeout(function(){
        monster.monsterTurn(player)},3000);
 
-    // monster.monsterTurn(player);
-    deadmonster();
+    deadMonster();
 }
 
 function criticity(){
@@ -136,7 +135,7 @@ function criticity(){
     return critic == 2;
 }
 
-function deadmonster(){
+function deadMonster(){
     if (monster.life <= 0) {
 
         monster.killedByPlayer(player);
@@ -147,14 +146,14 @@ function deadmonster(){
         // On affiche la liste des monstres tués
         if (killedMonsters.length > 0) {
             console.log("Voici la liste des monstres tués : " + killedMonsters);
-            blockText.firstChild.data = "Voici la liste des monstres tués : ";
-            blockText.children.innerHTML = '<ul>' + killedMonsters + '<ul>';
+            blockText.children.innerHTML += "Voici la liste des monstres tués : ";
+            blockText.children.innerHTML += '<p>' + killedMonsters + '<p>';
         }
 
         //On créé un nouveau monstre aléatoire qui attaque
         index = Math.floor(Math.random() * (Object.keys(monsters).length));
         monster = new Monster(monsters[index]);
-        console.log("\n******************************\nUn " + monster.name + " vous attaque !\n******************************");
+        //console.log("\n******************************\nUn " + monster.name + " vous attaque !\n******************************");
         blockText.firstChild.data = "Un " + monster.name + " vous attaque !";
         blockMonster.innerHTML = '<img src="./asset/images/' + monster.name + '.png" alt="monter"/>';
     }
