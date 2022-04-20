@@ -128,6 +128,5 @@ function deadMonster(){
 
 function scrollBot(){
     var objScroll= document.getElementById('infoJeu');
-objScroll.scrollTop = objScroll.scrollHeight;
-
+    objScroll.scrollTop = objScroll.scrollHeight;
 }
